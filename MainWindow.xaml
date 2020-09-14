@@ -1,0 +1,36 @@
+﻿<Window x:Class="Paskaita_19_Zaidimas.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Paskaita_19_Zaidimas"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="797.554">
+    <Grid Background="#FFE4C5C5">
+        <Label Content="Pasirinkite kiek kartu norit zaisti" HorizontalAlignment="Right" Margin="0,10,592,374" Width="179" Background="#FFDBECC7"/>
+        <Label Content="Spekit tasku skaiciu" HorizontalAlignment="Left" Height="35" Margin="254,10,0,0" VerticalAlignment="Top" Width="117" Background="#FFDBECC7"/>
+        <TextBox x:Name="ZaidimuSk" HorizontalAlignment="Right" Margin="0,45,654,344" TextWrapping="Wrap" Width="47" TextChanged="Input_TextChanged"/>
+        <TextBox x:Name="SpetiTaskai" HorizontalAlignment="Left" Height="30" Margin="282,45,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="56" TextChanged="Input_TextChanged"/>
+        <Button x:Name="ZaistiButton" Content="Zaisti" HorizontalAlignment="Left" Height="58" Margin="393,10,0,0" VerticalAlignment="Top" Width="154" FontSize="24" Click="ZaistiButton_Click" IsEnabled="False"/>
+        <Label Content="Moneta" HorizontalAlignment="Left" Margin="21,133,0,0" VerticalAlignment="Top" Width="179" FontSize="16"/>
+        <Label Content="Kauliukas" HorizontalAlignment="Left" Height="31" Margin="254,133,0,0" VerticalAlignment="Top" Width="117" FontSize="16"/>
+        <Label Content="Surinkti taskai" HorizontalAlignment="Left" Height="31" Margin="376,133,0,0" VerticalAlignment="Top" Width="164" FontSize="16"/>
+        <Button x:Name="MestiMonetaButton" Content="Mesti moneta" HorizontalAlignment="Left" Margin="21,206,0,0" VerticalAlignment="Top" Width="117" Height="37" Click="MestiMonetaButton_Click" IsEnabled="False"/>
+        <Button x:Name="MestiKauliukaButton" Content="Mesti kauliuka" HorizontalAlignment="Left" Height="37" Margin="254,206,0,0" VerticalAlignment="Top" Width="84" Click="MestiKauliukaButton_Click" IsEnabled="False" />
+        <Button x:Name="SkaiciuotiTaskusButton" Content="Skaiciuoti taskus" HorizontalAlignment="Left" Height="37" Margin="383,206,0,0" VerticalAlignment="Top" Width="164" Click="SkaiciuotiTaskusButton_Click" IsEnabled="False"/>
+        <Button x:Name="ZaistiIsNaujoButton" Content="Zaisti is naujo" HorizontalAlignment="Left" Height="46" Margin="21,264,0,0" VerticalAlignment="Top" Width="526" Click="ZaistiIsNaujoButton_Click"/>
+        <TextBox x:Name="MonetosReiksme" HorizontalAlignment="Left" Height="32" Margin="21,169,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="115" Background="{x:Null}" IsReadOnly="True"/>
+        <TextBox x:Name="KauliukoReiksme" HorizontalAlignment="Left" Height="32" Margin="254,169,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="84" Background="{x:Null}" IsReadOnly="True"/>
+        <TextBox x:Name="SurinkitTaskai" HorizontalAlignment="Left" Height="37" Margin="384,166,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="164" RenderTransformOrigin="0.5,0.5" Background="{x:Null}" IsReadOnly="True">
+            <TextBox.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform/>
+                    <SkewTransform/>
+                    <RotateTransform Angle="0.144"/>
+                    <TranslateTransform/>
+                </TransformGroup>
+            </TextBox.RenderTransform>
+        </TextBox>
+
+    </Grid>
+</Window>
