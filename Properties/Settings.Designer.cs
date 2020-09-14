@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Paskaita_19_Zaidimas.Properties
+namespace Paskaita_19.Properties
 {
 
 

@@ -13,110 +13,62 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace Paskaita_19_Zaidimas
+namespace Paskaita_19
 {
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>
     public partial class MainWindow : Window
     {
-        public int MyProperty { get; set; }
-        public int MonetosReiksmes { get; set; }
-        public int KauliukoReiksmes { get; set; }
-        public int Visitaskai { get; set; }
-        public int SuZaistiZaidimai { get; set; }
+        public List<string>  Lietuviskai { get; set; }
+        public List<string> Angliskai { get; set; }
+        public int ZodzioNr { get; set; }
+        public int SpejimuSkaicius { get; set; }
+        public int TeisingiSpeijimai { get; set; }
         public MainWindow()
         {
+            Lietuviskai = new List<string>() { "suo", "kate", "namas", "saule", "medis", "arklys" };
+            Angliskai = new List<string>() { "dog", "cat", "house", "sun", "tree", "horse" };
             InitializeComponent();
         }
 
-        private void MestiMonetaButton_Click(object sender, RoutedEventArgs e)
+        private void SpejamasZodis_TextChanged(object sender, TextChangedEventArgs e)
         {
-            List<string> moneta = new List<string>() { "Herbas", "Skaicius" };
-            Random rand = new Random();
-                MonetosReiksmes = rand.Next(0, moneta.Count);
-                MonetosReiksme.Text = moneta[MonetosReiksmes];
-                MestiMonetaButton.IsEnabled = false;
-                MestiKauliukaButton.IsEnabled = true;
+            
+
         }
 
-        private void MestiKauliukaButton_Click(object sender, RoutedEventArgs e)
+        private void ParinkitZodiButton_Click(object sender, RoutedEventArgs e)
         {
             Random rand = new Random();
-            KauliukoReiksmes = rand.Next(1, 7);
-            KauliukoReiksme.Text = $"{KauliukoReiksmes}";
-            MestiKauliukaButton.IsEnabled = false;
-            SkaiciuotiTaskusButton.IsEnabled = true;
+            ZodzioNr = rand.Next(0, Lietuviskai.Count);
+            DuotasZodis.Text = Lietuviskai[ZodzioNr];
+            ParinkitZodiButton.IsEnabled = false;
+            SpejamasZodis.Text = "";
+            SpejamasZodis.Background = Brushes.White;
+            TikrintiButton.IsEnabled = true;
+
         }
 
-        private void SkaiciuotiTaskusButton_Click(object sender, RoutedEventArgs e)
-        { 
-                switch (MonetosReiksme.Text)
-                {
-                    case "Herbas":
-                        Visitaskai += KauliukoReiksmes;
-                        break;
-                    case "Skaicius":
-                        Visitaskai += (KauliukoReiksmes * 2);
-                        break;
-                    default:
-                        break;
-                }
-                SurinkitTaskai.Text = $"{Visitaskai}";
-                MestiMonetaButton.IsEnabled = true;
-                MonetosReiksme.Text = "";
-                KauliukoReiksme.Text = "";
-                SuZaistiZaidimai += 1;
-                SkaiciuotiTaskusButton.IsEnabled = false;
-            if (SuZaistiZaidimai >= int.Parse(ZaidimuSk.Text))
+        private void TikrintiButton_Click(object sender, RoutedEventArgs e)
+        {
+            var teisingasSpejimas = Angliskai[ZodzioNr];
+            if (teisingasSpejimas == SpejamasZodis.Text)
             {
-                MestiKauliukaButton.IsEnabled = false;
-                MestiMonetaButton.IsEnabled = false;
-                if (int.Parse(SpetiTaskai.Text) == Visitaskai)
-                {
-                    MessageBox.Show($"Jus spejot, kad surinksit: {SpetiTaskai.Text} ir atspejot");
-                }
-                else
-                {
-                    MessageBox.Show($"Jus spejot, kad surinksit: {SpetiTaskai.Text}, is tikro surinkti taskai: {Visitaskai} ");
-                }
+                SpejamasZodis.Background = Brushes.Green;
+                MessageBox.Show("Atspejote");
+                ParinkitZodiButton.IsEnabled = true;
+                TeisingiSpeijimai += 1;
             }
-
-        }
-
-        private void Input_TextChanged(object sender, TextChangedEventArgs e)
-        {
-            int zaidimuSk; int spetiTaskai;
-            if (int.TryParse(ZaidimuSk.Text, out zaidimuSk) && int.TryParse(SpetiTaskai.Text, out spetiTaskai))
+            else
             {
-               
-                if (spetiTaskai >= zaidimuSk && spetiTaskai <=zaidimuSk*12)
-                {
-                    ZaistiButton.IsEnabled = true;
-                }
-                else
-                {
-                    ZaistiButton.IsEnabled = false;
-                }
+                SpejamasZodis.Background = Brushes.Red;
+                MessageBox.Show("Neteisingai");
+                ParinkitZodiButton.IsEnabled = true;
             }
-
-        }
-
-        private void ZaistiButton_Click(object sender, RoutedEventArgs e)
-        {
-            ZaidimuSk.IsReadOnly = true; SpetiTaskai.IsReadOnly = true; MestiMonetaButton.IsEnabled = true; ZaistiButton.IsEnabled = false;
-        }
-
-        private void ZaistiIsNaujoButton_Click(object sender, RoutedEventArgs e)
-        {
-            ZaidimuSk.Text = "";
-            SpetiTaskai.Text = "";
-            SuZaistiZaidimai = 0;
-            Visitaskai = 0;
-            SurinkitTaskai.Text = "";
-            ZaidimuSk.IsReadOnly = false;
-            SpetiTaskai.IsReadOnly = false;
-            ZaistiButton.IsEnabled = false;         
+            TikrintiButton.IsEnabled = false;
+            SpejimuSkaicius += 1;
+            SpejimuSk.Content = $"Speta kartu : {SpejimuSkaicius} is ju teisingi {TeisingiSpeijimai}";
         }
     }
 }
